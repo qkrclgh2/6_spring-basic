@@ -1,0 +1,66 @@
+★ 초기 설정
+	Auto import
+		자동 임포트 옵션 활성화
+
+	File Encoding
+		3개 전부 UTF-8 로 통일!
+	
+	Code Completion
+		대소문자를 구분할지 여부 체크!
+		체크를 하지 않아야 대소문자 구분하지 않음.
+		제일 위에 거 체크해제.
+
+	Annotation Processor
+		주석 처리기! 사용 활성화!
+
+▶ 단축키
+	Ctrl + D : 한 줄 복사
+	Ctrl + X : 한 줄 삭제 및 잘라내기
+	Shift + F6 : 이름 변경 (변수, 메소드 등등)
+	Ctrl + Alt + L : 자동 줄 맞춤
+	Ctrl + Shift + F : 검색
+	Ctrl + Shift + R : 바꾸기
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
