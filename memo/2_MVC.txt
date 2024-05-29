@@ -16,3 +16,52 @@
 		--->
 	클라이언트       View(Controller) <--> Model <--> DB
 		<---
+
+▶ MVC 2
+	MVC1 패턴에 Front Controller 가 추가된 형태
+
+	Front Controller : MVC 2 의 핵심, 모든 요청을 중앙 집중식을 처리.
+
+	1) 사용자의 모든 요청이 Front Controller 로 들어옴
+	2) 요청을 분석하고 적절한 컨트롤러에 전달
+	3) 컨트롤러는 비즈니스 로직을 수행하고 모델을 업데이트한 후 결과를 뷰에 전달!
+	4) Front Controller 는 최정적으로 뷰를 렌더링하여 사용자에게 응답을 반환.
+	
+▶ Spring MVC
+	스프링 프레임워크에 MVC 2 모델을 좀 더 발전 시킨 형태.
+	
+	1) 클라이언트가 서버에 요청을 하면, Front Controller인 DispatcherServlet 클래스가 요청을 받는다.
+	2) DispatcherServlet은 HandlerMapping 에게 요청이 들어온 uri 와 매핑되는 컨트롤러 검색 요청!, 찾으면 반환!
+	3) 반환 받은 컨트롤러로 클라이언트의 요청 처리를 요청!
+	4) Controller 는 비즈니스 로직을 수행한 후 결과를 반환!
+	5) 반환하는 html이 있다면 ViewResolver 에게 html를 찾아달라고 요청! 찾으면 반환!
+	6) 최종적으로 DispatcherServlet이 응답할 View 의 랜더를 지시!
+	7) 최종 렌더링 후 마무리!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
