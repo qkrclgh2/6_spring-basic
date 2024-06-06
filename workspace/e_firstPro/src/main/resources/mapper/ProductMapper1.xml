@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.e_firstpro.mapper.ProductMapper1">
+
+    <insert id="insert">
+        insert into product
+        values (seq_product.nextval, #{name}, #{price}, #{category}, #{description})
+    </insert>
+
+<!--    동적 SQL 만들어보자!    -->
+    <select id="findByName" resultType="ProductVO">
+        select * from PRODUCT
+        <if test="name != null">
+
+            where name like '%' || #{name} || '%'
+        </if>
+    </select>
+
+<!--    where 태그 안에 if 문들 중에서 하나라도 true 가 뜬다면
+        where을 생성한다. -->
+<!--    AND 나 OR 은, 만약 해당 조건이 가장 먼저 오게 된다면, 자동으로 지워준다.  -->
+    <select id="findByConditions" resultType="ProductVO">
+        select * from PRODUCT
+        <where>
+            <if test="name != null">
+                AND name like '%' || #{name} || '%'
+            </if>
+            <if test="category != null">
+                AND category = #{category}
+            </if>
+            <if test="price != null">
+                OR price >= #{price}
+            </if>
+        </where>
+    </select>
+
+</mapper>

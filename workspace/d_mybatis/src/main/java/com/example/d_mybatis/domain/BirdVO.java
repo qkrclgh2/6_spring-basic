@@ -15,8 +15,10 @@ public class BirdVO {
 
     public BirdVO() {}
 
+//   빌더 패턴은 하나만!
     @Builder
-    public BirdVO (String name, int age, String gender){
+    public BirdVO (int id, String name, int age, String gender){
+        this.id = id;
         this.name = name;
         this.age = age;
         this.gender = gender;

@@ -39,6 +39,7 @@ class BirdMapperTest {
 //        birdVO.setGender("여");
 
 //        빌더 패턴으로 객체를 만드는 방법.
+
         BirdVO birdVO = BirdVO.builder()
                 .age(5)
                 .name("매")
@@ -46,5 +47,27 @@ class BirdMapperTest {
                 .build();
 
         birdMapper.insert(birdVO);
+    }
+
+    @Test
+    void updateByIdTest(){
+        int pk = 1;
+        int updatedAge = 10;
+
+        BirdVO vo =
+                BirdVO.builder()
+                        .id(1)
+                        .age(10)
+                        .build();
+
+        BirdVO updateVO = birdMapper.selectById(1);
+        updateVO.setAge(updatedAge);
+        birdMapper.updateById(updateVO);
+    }
+
+    @Test
+    void deleteByIdTest(){
+
+        birdMapper.deleteById(1);
     }
 }

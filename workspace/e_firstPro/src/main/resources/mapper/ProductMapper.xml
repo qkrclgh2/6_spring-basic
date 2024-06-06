@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.e_firstpro.mapper.ProductMapper">
+
+<!--  Product 테이블 특정 조회  -->
+        <select id="selectById" resultType="com.example.e_firstpro.domain.vo.ProductVO" parameterType="_int">
+        select * from PRODUCT
+        where id = #{id}
+    </select>
+
+<!--  Product 테이블 전체 조회   -->
+    <select id="selectAll" resultType="ProductVO">
+        select * from PRODUCT
+    </select>
+
+<!--    insert  -->
+    <insert id="insert" parameterType="ProductVO">
+        insert into PRODUCT
+        values (seq_product.nextval, #{name}, #{price}, #{category}, #{description})
+    </insert>
+
+<!--    delete -->
+    <delete id="deleteById">
+        delete from product
+        where id = #{id}
+    </delete>
+</mapper>
+
+
