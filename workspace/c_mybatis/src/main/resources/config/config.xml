@@ -4,4 +4,14 @@
 
 <configuration>
 
+    <!-- mapper.xml 파일 위치 등록 -->
+    <mappers>
+        <mapper resource="/mapper/TimeMapper.xml" />
+    </mappers>
+
+    <!-- 별칭을 등록할 수 있다. -->
+<!--    <typeAliases>-->
+<!--        <typeAlias type="com.example.c_mybatis.test.Test" alias="Test" />-->
+<!--    </typeAliases>-->
+
 </configuration>

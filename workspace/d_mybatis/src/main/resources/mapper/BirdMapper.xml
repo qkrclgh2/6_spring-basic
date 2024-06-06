@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.d_mybatis.mapper.BirdMapper">
+
+    <select id="getTime" resultType="string">
+        SELECT SYSDATE FROM DUAL
+    </select>
+
+<!--    세미콜론 있으면 에러! -->
+<!--    parameterType 은 매개변수의 타입을 작성, 생략 가능!-->
+<!--    sql 이 실행될 때마다 바뀌어야하는 값이 있다면, 인터페이스에서 매개변수로 전달 받고
+        #{} 안에 변수 이름을 작성해준다. -->
+    <select id="selectById" resultType="com.example.d_mybatis.domain.BirdVO" parameterType="_int">
+        select * from TBL_BIRD
+        where id = #{id}
+    </select>
+
+<!--    Bird 테이블 전체 조회-->
+    <select id="selectAll" resultType="BirdVO">
+        select * from TBL_BIRD
+    </select>
+
+<!--    insert  -->
+    <insert id="insert" parameterType="BirdVO">
+        insert into TBL_BIRD
+        values (SEQ_BIRD.NEXTVAL, #{name}, #{age}, #{gender})
+    </insert>
+
+<!--    update  -->
+    <update id="updateById">
+        update tbl_bird
+        set name = #{name}, age = #{age}, gender = #{gender}
+        where id = #{id}
+    </update>
+
+</mapper>
