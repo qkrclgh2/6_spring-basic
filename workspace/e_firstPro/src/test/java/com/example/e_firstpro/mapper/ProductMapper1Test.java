@@ -40,13 +40,42 @@ class ProductMapper1Test {
 
     @Test
     void findByConditionsTest(){
+//        String name = null;
+//        String category = "Electronics";
+//        int price = 300;
+
         String name = null;
-        String category = "Electronics";
-        int price = 300;
+        String category = null;
+        int price = 0;
 
         List<ProductVO> productVOS = productMapper1.findByConditions(name, category, price);
         log.info("검색 결과 갯수 : " + productVOS.size());
         productVOS.stream().map(ProductVO::toString).forEach(log::info);
+    }
+
+    @Test
+    void findByChooseTest(){
+        String name = "Apple iPhone";
+        String category = "Electronics";
+        int price = 1000;
+
+        List<ProductVO> productVOS = productMapper1.findByChoose(name, category, price);
+        log.info("검색 결과 갯수 : " + productVOS.size());
+        productVOS.stream().map(ProductVO::toString).forEach(log::info);
+    }
+
+    @Test
+    void updateTest() {
+        ProductVO vo =
+                ProductVO.builder()
+                        .id(16L)
+                        .name("류호근")
+//                        .price(999999.99)
+//                        .category("human")
+                        .description("awesome")
+                        .build();
+
+        productMapper1.update(vo);
     }
 
 }

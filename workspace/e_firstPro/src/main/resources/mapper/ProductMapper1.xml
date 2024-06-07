@@ -29,10 +29,51 @@
             <if test="category != null">
                 AND category = #{category}
             </if>
-            <if test="price != null">
+            <if test="price != 0">
                 OR price >= #{price}
             </if>
         </where>
     </select>
 
+    <select id="findByChoose" resultType="ProductVO">
+        select * from product
+        <where>
+            <choose>
+                <when test="name != null">name = #{name}</when>
+                <when test="category != null">category = #{category}</when>
+                <otherwise>price &lt; 1000</otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <update id="update">
+        update product
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="category != null">category = #{category},</if>
+            <if test="description != null">description = #{description}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+
+
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

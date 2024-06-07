@@ -1,4 +1,4 @@
-package com.example.e_firstpro.domain.vo;
+package com.example.product_final.domain.vo;
 
 import lombok.Builder;
 import lombok.Data;

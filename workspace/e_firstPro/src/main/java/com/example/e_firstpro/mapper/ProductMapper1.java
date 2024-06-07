@@ -14,4 +14,8 @@ public interface ProductMapper1 {
 
     List<ProductVO> findByConditions(String name, String category, int price);
 
+    List<ProductVO> findByChoose(String name, String category, int price);
+
+    void update(ProductVO vo);
+
 }
