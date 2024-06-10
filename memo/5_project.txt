@@ -48,6 +48,35 @@
 		따라서 데이터의 길이에 제한도 없으며, GET 방식 보다 보안성이 높다.
 		주로 insert, update, delete 에 사용된다.
 
+▷ 탬플릿 엔진
+	서버에서 데이터를 받아 HTML 에 해당 데이터를 넣어 보여주는 도구.
+	종류 = thymeleaf, JSP 등 (스프링에서 권장하는 것은 thymeleaf)
+
+▶ thymeleaf
+	의존성을 추가하는 것 만으로 별다른 설정 없이 사용할 수 있다.   
+
+	- 표현식
+   	1) ${user.name} - 변수의 값을 표현
+   	2) #{properties.name} - 속성 파일 값을 표현 잘 사용하지 않음.
+   	3) @{test/test} - URI 표현
+   	4) *{name} - th:object=${user}
+
+   	- 문법
+   	1) th:text - 텍스트를 표현할 때 사용.
+     		ex) th:text="${user.name}"
+   	2) th:object - 선택한 객체로 지정
+      		ex) th:object="${user}"
+          		th:text="${name}"
+   	3) th:each - 반복할 때 사용
+      		ex) th:each="user:${users}"
+   	4) th:if - 조건이 true 일 때 해당 태그를 표시
+      		ex) th:if="${user.age} > 19"
+   	5) th:unless - 조건이 false 일 때 해당 태그를 표시
+      		ex) th:unless="${user.age} > 19"
+   	6) th:href - URI 경로 지정
+      		ex) th:href="@{/test/test}"
+   	7) th:with - 변수 생성
+      		ex) th:with="name=${user.name}"
 
 
 
