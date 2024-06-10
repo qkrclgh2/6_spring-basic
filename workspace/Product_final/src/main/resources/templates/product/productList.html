@@ -47,13 +47,13 @@
 
         <tr th:each="product:${products}" th:object="${product}">
             <td th:text="*{id}"></td>
-            <td><a href="#" th:text="*{name}"></a></td>
+            <td><a th:href="@{/product/detail/{id}(id=*{id})}" th:text="*{name}"></a></td>
         </tr>
 
         </tbody>
     </table>
     <div class="d-flex justify-content-end mb-3">
-        <a href="#" class="btn btn-success">새 물품 등록</a>
+        <a th:href="@{/product/write}" class="btn btn-success">새 물품 등록</a>
     </div>
 </div>
 

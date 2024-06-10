@@ -64,9 +64,9 @@
    	- 문법
    	1) th:text - 텍스트를 표현할 때 사용.
      		ex) th:text="${user.name}"
-   	2) th:object - 선택한 객체로 지정
+   	2) th:object - 선택한 객체로 지정 (부모한테 작성)
       		ex) th:object="${user}"
-          		th:text="${name}"
+          		th:text="*{name}"
    	3) th:each - 반복할 때 사용
       		ex) th:each="user:${users}"
    	4) th:if - 조건이 true 일 때 해당 태그를 표시
@@ -78,6 +78,15 @@
    	7) th:with - 변수 생성
       		ex) th:with="name=${user.name}"
 
+<!--        하나만 넘겨서 확인해봄    -->
+<!--        <tr>-->
+<!--            <td th:text="${product.id}"></td>-->
+<!--            <td><a href="#" th:text="${product.name}"></a></td>-->
+<!--        </tr>-->
+<!--        <tr th:each="product:${products}">-->
+<!--            <td th:text="${product.id}"></td>-->
+<!--            <td><a href="#" th:text="${product.name}"></a></td>-->
+<!--        </tr>-->
 
 
 

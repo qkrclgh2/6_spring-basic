@@ -1,6 +1,8 @@
 package com.example.product_final.service;
 
 import com.example.product_final.domain.dto.ProductDTO;
+import com.example.product_final.domain.dto.ProductDetailDTO;
+import com.example.product_final.domain.vo.ProductVO;
 import com.example.product_final.mapper.ProductMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,5 +22,23 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDTO> findAll() {
         return productMapper.selectList();
+    }
+
+    // 상세보기 페이지로 보낼 데이터 select
+    @Override
+    public ProductDetailDTO findById(Long id) {
+        return productMapper.selectOne(id);
+    }
+
+    // 새 물품 추가하기에 등록할 insert
+    @Override
+    public void save(ProductVO vo) {
+        productMapper.insert(vo);
+    }
+
+    // 물품 정보 수정 update
+    @Override
+    public void edit(ProductVO vo) {
+        productMapper.update(vo);
     }
 }

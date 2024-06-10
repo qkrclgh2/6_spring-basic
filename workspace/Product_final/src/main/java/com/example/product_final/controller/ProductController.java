@@ -1,12 +1,13 @@
 package com.example.product_final.controller;
 
+import com.example.product_final.domain.dto.ProductDTO2;
+import com.example.product_final.domain.vo.ProductVO;
 import com.example.product_final.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @Slf4j
@@ -40,5 +41,51 @@ public class ProductController {
 
         return "product/productList";
     }
+
+    // @PathVariable
+    // 경로로 넘어온 값을 매개변수와 매핑.
+    // PathVariable 의 이름과 매개변수의 이름이 동일하다면 자동으로 매핑되기에 생략 가능!
+    @GetMapping("/detail/{id}")
+    public String detail(@PathVariable Long id, Model model){
+
+        model.addAttribute("product", productService.findById(id));
+
+        return "product/detail";
+    }
+
+    // writeForm 으로 이동하는 Controller!
+    @GetMapping("/write")
+    public String goWriteForm(Model model){
+        // 결국에는, html 에서 데이터를 다시 받아올 때도
+        // model 객체에 담아서 받아와야하는데,
+        // writeForm 에서 바로 model 객체를 사용할 수 없기에
+        // writeForm 을 요청할 때 부터 넘겨준다.
+        model.addAttribute("product", new ProductDTO2());
+        // html 로 리턴
+        return "product/writeForm";
+    }
+
+    @PostMapping("/write")
+    public String writeOk(@ModelAttribute ProductDTO2 product){
+        ProductVO vo = ProductVO.toEntity(product);
+
+        // 업데이트가 넘어왔다면
+        if(product.getId() != null){
+            productService.edit(vo);
+            return "redirect:/product/detail/" + vo.getId();
+        }
+
+        productService.save(vo);
+
+        // html 을 리턴하는게 아니라 컨트롤러의 list로 리턴
+        return "redirect:/product/list";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Long id, Model model){
+        model.addAttribute("product", productService.findById(id));
+        return "product/writeForm";
+    }
+
 
 }

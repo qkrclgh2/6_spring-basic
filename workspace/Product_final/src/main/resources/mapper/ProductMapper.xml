@@ -12,4 +12,28 @@
         select id, name from product
         order by id
     </select>
+
+<!--    detail  -->
+    <select id="selectOne" resultType="ProductDetailDTO">
+        select * from product
+        where id = #{id}
+    </select>
+
+<!--    insert  -->
+    <insert id="insert" parameterType="ProductVO">
+        insert into product
+        values (seq_product.nextval, #{name}, #{price}, #{category}, #{description})
+    </insert>
+
+<!--    update  -->
+    <update id="update">
+        update product
+        set
+            name = #{name},
+            price = #{price},
+            category = #{category},
+            description = #{description}
+        where id = #{id}
+    </update>
+
 </mapper>
