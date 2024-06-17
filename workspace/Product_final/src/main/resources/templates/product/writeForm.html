@@ -24,7 +24,7 @@
 <!-- action 에 적어준 경로로 form 태그 내의 데이터들이 넘어간다.
      이 때 컨트롤러에 매개변수로 자동 매핑 되도록 해준다.-->
 <!--    <form th:action="${product.id != null} ? '@{/product/edit}' : '@{/product/write}'" th:object="${product}" method="post">-->
-    <form th:action="@{/product/write}" th:object="${product}" method="post">
+    <form th:action="@{/product/write}" th:object="${product}" method="post" onsubmit="return confirmSubmit()">
         <input type="hidden" th:field="*{id}">
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
@@ -48,6 +48,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous">
+</script>
+<script>
+    function  confirmSubmit(){
+        return confirm('추가 하시겠습니까?');
+    }
 </script>
 </body>
 </html>

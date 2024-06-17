@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.board.mapper.BoardMapper">
+
+<!--  게시글 목록 가져오기  -->
+    <select id="selectAll" resultType="BoardListDTO">
+        SELECT *
+        FROM (
+                 SELECT ROWNUM AS RN, BOARD.*
+                 FROM (
+                          SELECT
+                              B.BOARD_ID,
+                              B.BOARD_TITLE,
+                              U.NAME,
+                              B.BOARD_VIEWS,
+                              B.BOARD_REGISTER_DATE,
+                              B.BOARD_UPDATE_DATE,
+                              U.PROVIDER_ID,
+                              (SELECT COUNT(*) FROM TBL_FILE F WHERE F.BOARD_ID = B.BOARD_ID) AS FILE_COUNT
+                          FROM
+                              TBL_BOARD B JOIN TBL_USERS U
+                                               ON
+                              U.PROVIDER_ID = B.PROVIDER_ID
+                          ORDER BY
+                              B.BOARD_UPDATE_DATE DESC
+                      ) BOARD
+                 WHERE ROWNUM &lt;= #{endRow}
+             )
+        WHERE rn &gt; #{startRow}
+    </select>
+<!--  총 게시글의 갯수  -->
+    <select id="countBoard">
+        select count(*)
+        from tbl_board
+    </select>
+
+</mapper>

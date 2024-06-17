@@ -32,13 +32,18 @@ public class ProductServiceImpl implements ProductService {
 
     // 새 물품 추가하기에 등록할 insert
     @Override
-    public void save(ProductVO vo) {
-        productMapper.insert(vo);
+    public int save(ProductVO vo) {
+        return productMapper.insert(vo);
     }
 
     // 물품 정보 수정 update
     @Override
     public void edit(ProductVO vo) {
         productMapper.update(vo);
+    }
+
+    @Override
+    public int delete(long id) {
+        return productMapper.delete(id);
     }
 }

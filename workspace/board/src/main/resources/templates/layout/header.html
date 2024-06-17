@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- th:fragment 다른 html 에 해당 내용을 추가 할 수 있다. -->
+<div th:fragment="header">
+    <div class="header">
+        <div class="logo">게시판</div>
+        <div class="user" sec:authorize="isAuthenticated()">
+            <div class="user-info">
+                <span th:text="${#authentication.getPrincipal().getName()}" class="user-name"></span>
+                <img th:src="${#authentication.getPrincipal().getProfilePic()}" alt="Profile Image" class="profile-pic"/>
+            </div>
+        </div>
+    </div>
+    <div class="nav-bar">
+        <a th:href="@{/}">홈</a>
+        <a th:href="@{/board/list}">게시판 목록</a>
+        <a href="#">기능1</a>
+        <div sec:authorize="!isAuthenticated()">
+            <a href="/oauth2/authorization/kakao">로그인</a>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+            <a href="/logout">로그아웃</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

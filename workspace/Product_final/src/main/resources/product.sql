@@ -15,6 +15,22 @@ increment by 1
 start with 1
 nocache;
 
+drop table tbl_user;
+
+CREATE TABLE tbl_user (
+        id NUMBER PRIMARY KEY,
+        userid VARCHAR2(100) NOT NULL unique ,
+        email VARCHAR2(50),
+        password VARCHAR2(1000)
+);
+
+select * from tbl_user;
+
+create sequence seq_user
+    increment by 1
+    start with 1
+    nocache;
+
 insert INTO product (id, name, price, category, description) values (seq_product.nextval, 'Apple iPhone', 999.99, 'Electronics', 'Latest model of iPhone');
 insert INTO product (id, name, price, category, description) values (seq_product.nextval, 'Samsung Galaxy', 899.99, 'Electronics', 'Newest Samsung Galaxy phone');
 insert INTO product (id, name, price, category, description) values (seq_product.nextval, 'Sony Headphones', 199.99, 'Electronics', 'Noise cancelling headphones');

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 목록</title>
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/list.css}">
+</head>
+<body>
+<div th:replace="~{/layout/header :: header}"></div>
+
+<div class="content">
+    <div class="board-title">게시판 목록</div>
+    <table class="board-table">
+        <thead>
+        <tr>
+            <th class="number">번호</th>
+            <th class="title">제목</th>
+            <th class="writer">작성자</th>
+            <th class="views">조회수</th>
+            <th class="date">작성일</th>
+        </tr>
+        </thead>
+        <tbody id="boardList">
+        <tr th:each="board : ${boards}" th:object="${board}">
+            <td th:text="*{boardId}">1</td>
+            <td><a href="#" th:text="*{boardTitle}">게시글 제목1</a></td>
+            <td th:text="*{name}">작성자1</td>
+            <td th:text="*{boardViews}">10</td>
+            <div th:if="*{boardRegisterDate == boardUpdateDate}">
+                <td th:text="*{#temporals.format(boardUpdateDate, 'yy년 M월 d일 HH시 mm분')}"></td>
+            </div>
+            <div th:unless="*{boardRegisterDate == boardUpdateDate}">
+                <td th:text="*{#temporals.format(boardUpdateDate, 'yy년 M월 d일 HH시 mm분')} + ' (수정)'"></td>
+            </div>
+
+        </tr>
+        </tbody>
+    </table>
+    <ul class="pagination">
+        <li th:classappend="${startPage == 1} ? 'disabled' : ''" class="page-item">
+            <a class="page-link" th:href="@{/board/list(pageNo=${startPage - 1}, pageSize=${pageSize})}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+
+        <li th:each="i : ${#numbers.sequence(startPage, endPage)}" th:classappend="${currentPage == i} ? 'active' : ''" class="page-item">
+            <a th:href="@{/board/list(pageNo=${i}, pageSize=${pageSize})}" class="page-link" th:text="${i}"></a>
+        </li>
+
+        <li th:classappend="${endPage == totalPages} ? 'disabled' : ''" class="page-item">
+            <a class="page-link" th:href="@{/board/list(pageNo=${endPage + 1}, pageSize=${pageSize})}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+
+<div th:replace="~{/layout/footer :: footer}"></div>
+</body>
+</html>

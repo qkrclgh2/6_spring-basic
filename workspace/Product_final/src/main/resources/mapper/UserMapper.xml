@@ -1,26 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.product_final.mapper.PagingMapper">
-<!--    페이징 처리를 위한 쿼리   -->
-    <select id="selectPaging" resultType="ProductDTO">
-        select id, name
-        from (
-            select rownum as rn, p.*
-            from (
-                select id, name
-                from product
-                order by id
-                 ) p
-             )
-        where rn &gt; #{startRow}
-        and rn &lt;= #{endRow}
-    </select>
+<mapper namespace="com.example.product_final.mapper.UserMapper">
 
-<!--    총 데이터의 수    -->
-    <select id="countProducts" resultType="int">
-        select count(*)
-        from product
+<!--    회원 가입   -->
+    <insert id="insert">
+        insert into tbl_user
+        values (seq_user.nextval, #{userId}, #{email}, #{password})
+    </insert>
+
+<!--    로그인     -->
+    <select id="selectOne">
+        select * from tbl_user
+        where userid = #{userId}
     </select>
 
 </mapper>

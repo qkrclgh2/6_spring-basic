@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>메인</title>
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+</head>
+<body>
+
+    <div th:replace="~{/layout/header :: header}"></div>
+
+    <div style="text-align: center">
+        <img th:src="@{/img/main.jpg}" alt="한강 류호근">
+    </div>
+
+    <div th:replace="~{/layout/footer :: footer}"></div>
+
+</body>
+</html>

@@ -17,10 +17,13 @@ public interface ProductService {
     ProductDetailDTO findById(Long id);
 
     // 새 물품 추가하기에 등록할 insert
-    void save(ProductVO vo);
+    int save(ProductVO vo);
 
     // 물품 정보 수정 update
     void edit(ProductVO vo);
+
+    // 물품 정보 삭제 delete
+    int delete(long id);
 
 
 

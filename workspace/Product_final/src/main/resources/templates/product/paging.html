@@ -45,15 +45,16 @@
         </tr>
         </thead>
         <tbody>
-<!--        하나만 넘겨서 확인해봄    -->
-<!--        <tr>-->
-<!--            <td th:text="${product.id}"></td>-->
-<!--            <td><a href="#" th:text="${product.name}"></a></td>-->
-<!--        </tr>-->
-<!--        <tr th:each="product:${products}">-->
-<!--            <td th:text="${product.id}"></td>-->
-<!--            <td><a href="#" th:text="${product.name}"></a></td>-->
-<!--        </tr>-->
+        <!--        하나만 넘겨서 확인해봄.-->
+        <!--        <tr>-->
+        <!--            <td th:text="${product.id}"></td>-->
+        <!--            <td><a href="#" th:text="${product.name}"></a></td>-->
+        <!--        </tr>-->
+
+        <!--        <tr th:each="product:${products}">-->
+        <!--            <td th:text="${product.id}"></td>-->
+        <!--            <td><a href="#" th:text="${product.name}"></a></td>-->
+        <!--        </tr>-->
 
         <tr th:each="product:${products}" th:object="${product}">
             <td th:text="*{id}"></td>
@@ -62,6 +63,36 @@
 
         </tbody>
     </table>
+
+
+<!--    <nav>-->
+<!--        <ul class="pagination justify-content-center">-->
+<!--            <li th:classappend="${currentPage == 1} ? 'disabled' : ''" class="page-item">-->
+<!--                <a th:href="@{/product/paging(pageNo=${currentPage - 1}, pageSize=${pageSize})}" class="page-link"><</a>-->
+<!--            </li>-->
+<!--            <li th:each="i : ${#numbers.sequence(1, totalPages)}" th:classappend="${currentPage == i} ? 'active' : ''" class="page-item">-->
+<!--                <a th:href="@{/product/paging(pageNo=${i}, pageSize=${pageSize})}" class="page-link" th:text="${i}"></a>-->
+<!--            </li>-->
+<!--            <li th:classappend="${currentPage == totalPages} ? 'disabled' : ''" class="page-item">-->
+<!--                <a th:href="@{/product/paging(pageNo=${currentPage + 1}, pageSize=${pageSize})}" class="page-link">></a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </nav>-->
+
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li th:classappend="${startPage == 1} ? 'disabled' : ''" class="page-item">
+                <a th:href="@{/product/paging(pageNo=${startPage - 1}, pageSize=${pageSize})}" class="page-link"><</a>
+            </li>
+            <li th:each="i : ${#numbers.sequence(startPage, endPage)}" th:classappend="${currentPage == i} ? 'active' : ''" class="page-item">
+                <a th:href="@{/product/paging(pageNo=${i}, pageSize=${pageSize})}" class="page-link" th:text="${i}"></a>
+            </li>
+            <li th:classappend="${endPage == totalPages} ? 'disabled' : ''" class="page-item">
+                <a th:href="@{/product/paging(pageNo=${endPage + 1}, pageSize=${pageSize})}" class="page-link">></a>
+            </li>
+        </ul>
+    </nav>
+
     <div class="d-flex justify-content-end mb-3">
         <a th:href="@{/product/write}" class="btn btn-success">새 물품 등록</a>
     </div>

@@ -1,0 +1,74 @@
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.board-table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.board-table th, .board-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+.board-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+.board-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.board-table tr:hover {
+    background-color: #ddd;
+}
+.board-title {
+    font-size: 2em;
+    margin-top: 20px;
+}
+.board-table th.number, .board-table th.views, .board-table th.writer {
+    width: 10%;
+}
+.board-table th.title {
+    width: 40%;
+}
+.board-table th.date {
+    width: 20%;
+}
+
+ul, ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.pagination .page-item {
+    margin: 0 5px;
+}
+.pagination .page-item .page-link {
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #4CAF50;
+    border: 1px solid #ddd;
+}
+.pagination .page-item .page-link:hover {
+    background-color: #ddd;
+}
+.pagination .page-item.active .page-link {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+.pagination .page-item.disabled .page-link {
+    color: #ccc;
+    pointer-events: none;
+    border: 1px solid #ddd;
+}
